@@ -149,7 +149,6 @@
     <ClInclude Include="aimbot.h" />
     <ClInclude Include="asm functions.h" />
     <ClInclude Include="config.h" />
-    <ClInclude Include="framework.h" />
     <ClInclude Include="hooks.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="libraries\include\GLFW\glfw3.h" />

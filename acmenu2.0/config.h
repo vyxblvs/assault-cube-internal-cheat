@@ -6,13 +6,13 @@
 struct _config
 {
 	//Is menu enabled
-	bool menu = false;
+    bool menu = false;
 
 	//aimbot
     bool aimbot      = false;
     bool MagicBullet = false;
     bool AimClose    = false;
-	bool TeamAim     = false;
+    bool TeamAim     = false;
     bool AimOnClick  = false;
     bool triggerbot  = false;
 
@@ -30,7 +30,7 @@ struct _config
     float crouch   = 6.0f;
 
 	//misc
-	bool InvisGun = false;
+    bool InvisGun = false;
     float* fov = nullptr;
 
     //internal configuration

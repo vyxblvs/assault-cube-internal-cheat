@@ -44,10 +44,10 @@ void InitializeGameData(const DWORD GameBase)
 		reinterpret_cast<DWORD*>(&hooks)[x] += GameBase;
 	}
 
-	PlayerCount	   = reinterpret_cast<UINT*>    (GameBase + 0x18AC0C);
-	EntityListPtr  = reinterpret_cast<entity***>(GameBase + 0x18AC04);
-	config.fov     = reinterpret_cast<float*>   (GameBase + 0x18A7CC);
-	player		   = *reinterpret_cast<entity**>(GameBase + 0x18AC00);
+	PlayerCount   = reinterpret_cast<UINT*>    (GameBase + 0x18AC0C);
+	EntityListPtr = reinterpret_cast<entity***>(GameBase + 0x18AC04);
+	config.fov    = reinterpret_cast<float*>   (GameBase + 0x18A7CC);
+	player        = *reinterpret_cast<entity**>(GameBase + 0x18AC00);
 
 	DWORD old;
 	constexpr int sizes[] = { 2, 6, 5, 5, 5, 6, 5, 5, 9, 5, 5, 6, 4, 4 };

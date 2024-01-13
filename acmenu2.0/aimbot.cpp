@@ -25,7 +25,7 @@ void aimbot()
 
 		if (distance < furthest)
 		{
-			FinalYaw = static_cast<float>(atan2f(absY, absX) * (180 / M_PI) - 90);
+			FinalYaw   = static_cast<float>(atan2f(absY, absX) * (180 / M_PI) - 90);
 			FinalPitch = static_cast<float>(atan2f(absZ, distance) * (180 / M_PI));
 
 			if (!config.AimClose) break;
@@ -48,7 +48,6 @@ entity* MagicBullet_main()
 	if (!*EntityListPtr) return nullptr;
 
 	entity** EntityList = *EntityListPtr;
-
 	entity* target = nullptr;
 	float furthest = MAX_FLOAT;
 

@@ -315,12 +315,6 @@
     <ClInclude Include="libraries\include\SDL\SDL_vulkan.h">
       <Filter>Header Files\misc</Filter>
     </ClInclude>
-    <ClInclude Include="framework.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>Header Files\misc</Filter>
-    </ClInclude>
     <ClInclude Include="menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -337,6 +331,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="asm functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
