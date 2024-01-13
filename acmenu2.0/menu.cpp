@@ -145,12 +145,12 @@ void InitializeGui(const DWORD GameBase)
 	style->Colors[ImGuiCol_FrameBg]              = { 0.19f, 0.19f, 0.19f, 1 };
 	style->Colors[ImGuiStyleVar_FramePadding]    = { 2, 2, 2, 2 };
 	style->Colors[ImGuiStyleVar_FrameBorderSize] = { 1, 1, 1, 1 };
-	style->Colors[ImGuiStyleVar_FrameRounding]	 = { 0, 0, 0, 0 };
+	style->Colors[ImGuiStyleVar_FrameRounding]   = { 0, 0, 0, 0 };
 
 	style->Colors[ImGuiCol_Border]               = { 0.6f, 0.13f, 0.60f, 1 };
 	style->Colors[ImGuiCol_WindowBg]             = { 0.11764f, 0.05490f, 0.21568f, 1 };
 
-	style->Colors[ImGuiCol_Tab]	                 = { 0.33333f, 0.18039f, 0.58039f, 1 };
+	style->Colors[ImGuiCol_Tab]                  = { 0.33333f, 0.18039f, 0.58039f, 1 };
 	style->Colors[ImGuiCol_TabActive]            = { 0.48333f, 0.33039f, 0.73039f, 1 };
 	style->Colors[ImGuiCol_TabHovered]           = { 0.58333f, 0.43039f, 0.83039f, 1 };
 

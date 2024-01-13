@@ -51,16 +51,17 @@ entity* MagicBullet_main()
 	entity* target = nullptr;
 	float furthest = MAX_FLOAT;
 
-	for (UINT x = 1; x < *PlayerCount; ++x)
+	for (int x = 1; x < *PlayerCount; ++x)
 	{
-		if (!EntityList[x]->dead)
+		if (!EntityList[x]->dead && (!config.TeamAim || EntityList[x]->team != player->team))
 		{
+			if (!config.AimClose) return EntityList[x];
+
 			const float distance = sqrtf(static_cast<float>(pow(player->x_axis - EntityList[x]->x_axis, 2) + pow(player->y_axis - EntityList[x]->y_axis, 2)));
-			if ((distance < furthest || !config.AimClose) && (config.TeamAim || EntityList[x]->team != player->team))
+			if (distance < furthest)
 			{
 				furthest = distance;
 				target = EntityList[x];
-				if (!config.AimClose) break;
 			}
 		}
 	}

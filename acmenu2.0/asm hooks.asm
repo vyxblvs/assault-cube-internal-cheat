@@ -1,43 +1,42 @@
+global _SpreadScale
+global _RecoilScale
+global _PushScale
+global _InfAmmo
+global _InfReserves
+global _firerate
+global _reload
+global _godmode
+global _ArmorPiercing
+
+extern _player
+extern _config
+
+struc entity
+    .pad_0000:      resd 59
+    .health:        resd 1
+    .pad_031C:      resd 157
+    .weapon_class:  resd 1
+endstruc
+
+struc weapon
+    .padding:    resd 6
+    .delay_ptr:  resd 1
+endstruc
+
+struc cfg
+    .padding:      resd 3
+    .recoil:       resd 1
+    .spread:       resd 1
+    ._push:        resd 1
+    .firerate:     resd 1
+    .ReloadSpeed:  resd 1
+    .padding_2:    resw 5
+    .shooting:     resb 1
+endstruc
+
 section .rodata
   scale: dd 100.0
   empty: dd 0
-
-section .data
-  global _SpreadScale
-  global _RecoilScale
-  global _PushScale
-  global _InfAmmo
-  global _InfReserves
-  global _firerate
-  global _reload
-  global _godmode
-  global _ArmorPiercing
-
-  extern _player
-  extern _config
-
-  struc entity
-      .pad_0000:      resd 59
-      .health:        resd 1
-      .pad_031C:      resd 157
-      .weapon_class:  resd 1
-  endstruc
-
-  struc weapon
-      .padding:    resd 6
-      .delay_ptr:  resd 1
-  endstruc
-
-  struc cfg
-      .padding:      resd 3
-      .recoil:       resd 1
-      .spread:       resd 1
-      ._push:        resd 1
-      .firerate:     resd 1
-      .ReloadSpeed:  resd 1
-      .padding_2:    resw 5
-      .shooting:     resb 1
-  endstruc
 
 section .text
   _SpreadScale:
