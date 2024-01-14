@@ -136,31 +136,24 @@ void InitializeGui(const DWORD GameBase)
 	ImGui_ImplSDL2_InitForOpenGL(*(SDL_Window**)(GameBase + 0x185870), *(SDL_GLContext*)(GameBase - 0x3A7A78));
 	ImGui_ImplOpenGL2_Init();
 
-	ImGuiStyle* const style = &ImGui::GetStyle();
+	ImGuiStyle& style = ImGui::GetStyle();
 
-	style->Colors[ImGuiCol_ResizeGrip]           = { 0, 0, 0, 0 };
-	style->Colors[ImGuiCol_ResizeGripActive]     = { 0, 0, 0, 0 };
-	style->Colors[ImGuiCol_ResizeGripHovered]    = { 0, 0, 0, 0 };
-
-	style->Colors[ImGuiCol_FrameBg]              = { 0.19f, 0.19f, 0.19f, 1 };
-	style->Colors[ImGuiStyleVar_FramePadding]    = { 2, 2, 2, 2 };
-	style->Colors[ImGuiStyleVar_FrameBorderSize] = { 1, 1, 1, 1 };
-	style->Colors[ImGuiStyleVar_FrameRounding]   = { 0, 0, 0, 0 };
-
-	style->Colors[ImGuiCol_Border]               = { 0.6f, 0.13f, 0.60f, 1 };
-	style->Colors[ImGuiCol_WindowBg]             = { 0.11764f, 0.05490f, 0.21568f, 1 };
-
-	style->Colors[ImGuiCol_Tab]                  = { 0.33333f, 0.18039f, 0.58039f, 1 };
-	style->Colors[ImGuiCol_TabActive]            = { 0.48333f, 0.33039f, 0.73039f, 1 };
-	style->Colors[ImGuiCol_TabHovered]           = { 0.58333f, 0.43039f, 0.83039f, 1 };
-
-	style->Colors[ImGuiCol_CheckMark]            = { 0.08627f, 0.91372f, 0.30588f, 1 };
-
-	style->Colors[ImGuiCol_SliderGrab]           = { 0.39215f, 0.39215f, 0.39215f, 1 };
-	style->Colors[ImGuiCol_SliderGrabActive]     = { 0.51372f, 0.51372f, 0.51372f, 1 };
-
-	style->Colors[ImGuiCol_FrameBgHovered]       = { 0.23f, 0.23f, 0.23f, 1 };
-	style->Colors[ImGuiCol_FrameBgActive]        = { 0.23f, 0.23f, 0.23f, 1 };
-
-	style->TabRounding = 0;
+	style.TabRounding = 0;
+	style.Colors[ImGuiCol_ResizeGrip]           = { 0, 0, 0, 0 };
+	style.Colors[ImGuiCol_ResizeGripActive]     = { 0, 0, 0, 0 };
+	style.Colors[ImGuiCol_ResizeGripHovered]    = { 0, 0, 0, 0 };
+	style.Colors[ImGuiCol_FrameBg]              = { 0.19f, 0.19f, 0.19f, 1 };
+	style.Colors[ImGuiStyleVar_FramePadding]    = { 2, 2, 2, 2 };
+	style.Colors[ImGuiStyleVar_FrameBorderSize] = { 1, 1, 1, 1 };
+	style.Colors[ImGuiStyleVar_FrameRounding]   = { 0, 0, 0, 0 };
+	style.Colors[ImGuiCol_Border]               = { 0.6f, 0.13f, 0.60f, 1 };
+	style.Colors[ImGuiCol_WindowBg]             = { 0.11764f, 0.05490f, 0.21568f, 1 };
+	style.Colors[ImGuiCol_Tab]                  = { 0.33333f, 0.18039f, 0.58039f, 1 };
+	style.Colors[ImGuiCol_TabActive]            = { 0.48333f, 0.33039f, 0.73039f, 1 };
+	style.Colors[ImGuiCol_TabHovered]           = { 0.58333f, 0.43039f, 0.83039f, 1 };
+	style.Colors[ImGuiCol_CheckMark]            = { 0.08627f, 0.91372f, 0.30588f, 1 };
+	style.Colors[ImGuiCol_SliderGrab]           = { 0.39215f, 0.39215f, 0.39215f, 1 };
+	style.Colors[ImGuiCol_SliderGrabActive]     = { 0.51372f, 0.51372f, 0.51372f, 1 };
+	style.Colors[ImGuiCol_FrameBgHovered]       = { 0.23f, 0.23f, 0.23f, 1 };
+	style.Colors[ImGuiCol_FrameBgActive]        = { 0.23f, 0.23f, 0.23f, 1 };
 }
