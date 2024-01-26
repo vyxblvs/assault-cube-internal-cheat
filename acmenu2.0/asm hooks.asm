@@ -24,7 +24,7 @@ struc weapon
 endstruc
 
 struc cfg
-    .padding:      resd 3
+    .padding:      resb 13
     .recoil:       resd 1
     .spread:       resd 1
     ._push:        resd 1

@@ -5,15 +5,6 @@
 #include "asm functions.h"
 
 
-/*
-* everything here (besides ToggleCrouch) will hook/unhook depending on the status of the feature 
-* this is done to prevent writing these checks in asm, and cuz if everything was always hooked, it'd hurt performance (not in any way that matters but might aswell prevent that)
-* 
-* some functions like ToggleFirerate will just patch the targeted code completely if their sliders are set to the maximum or minimum value
-* this is done for the same reason, its just faster
-*/
-
-
 void ToggleFirerate()
 {
 	if (config.firerate == 1 || config.firerate == 100)

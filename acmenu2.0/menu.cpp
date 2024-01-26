@@ -7,40 +7,56 @@
 
 inline void CleanMenu()
 {
-	ImGui::PopStyleVar(2);
-	ImGui::PopStyleColor();
-	ImGui::EndTabBar();
 	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 }
 
 
-void SetupFrame()
+inline void SetupFrame()
 {
 	ImGui_ImplOpenGL2_NewFrame();
 	ImGui_ImplSDL2_NewFrame();
+
 	ImGui::NewFrame();
+	ImGui::SetNextWindowSize({ 600, 450 }, ImGuiCond_FirstUseEver);
 
-	static bool resized = false;
-	if (!resized)
+	constexpr ImVec4 dark_purple = { 0.2156862f, 0.0117647f, 0.3686274f, 0.85f };
+
+	ImGui::PushStyleColor(ImGuiCol_Border, dark_purple);
+
+	ImGui::Begin("Github @vyxblvs", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoSavedSettings);
+
+	ImGui::PopStyleColor();
+}
+
+
+bool CheckboxEx(const char* const label, bool* const var)
+{
+	constexpr ImVec4 dark_purple  = { 0.2156862f, 0.0117647f, 0.3686274f, 0.75f };
+	constexpr ImVec4 light_purple = { 0.3156862f, 0.0217647f, 0.4686274f, 0.75f };
+	constexpr ImVec4 LightGrey    = { 0.1562745f, 0.1562745f, 0.1562745f, 1.0f };
+
+	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding,    { 1.3f, 1.3f });
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding,   1.5f);
+	ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1.0f);
+
+	const bool v_status = *var;
+
+	if (v_status)
 	{
-		ImGui::SetNextWindowSize({ 500, 300 });
-		resized = true;
+		ImGui::PushStyleColor(ImGuiCol_FrameBg,        dark_purple);
+		ImGui::PushStyleColor(ImGuiCol_FrameBgHovered, light_purple);
+		ImGui::PushStyleColor(ImGuiCol_FrameBgActive,  light_purple);
 	}
+	else ImGui::PushStyleColor(ImGuiCol_Border, LightGrey);
 
-	ImGui::Begin(" ", nullptr, ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoTitleBar);
+	const bool status = ImGui::Checkbox(label, var);
 
-	constexpr const char* title  = "dbg";
-	static const float TextWidth = ImGui::CalcTextSize(title).x;
-	const float WindowWidth      = ImGui::GetWindowSize().x;
+	ImGui::PopStyleColor(v_status ? 3 : 1);
+	ImGui::PopStyleVar(3);
 
-	ImGui::SetCursorPosX((WindowWidth - TextWidth) * 0.5f);
-	ImGui::Text(title);
-
-	ImGui::PushStyleVar(ImGuiStyleVar_FrameBorderSize, 1);
-	ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(1.0f, 1.0f));
-	ImGui::PushStyleColor(ImGuiCol_Border, { 0.6f, 0.13f, 0.60f, 1 });
+	return status;
 }
 
 
@@ -55,35 +71,32 @@ void DrawMenu(SDL_Window* window)
 
 			if (ImGui::BeginTabItem("Aimbot"))
 			{
-				if (ImGui::Checkbox("Magic Bullet", &config.MagicBullet)) ToggleMagic();
+				if (CheckboxEx("Magic Bullet", &config.MagicBullet)) ToggleMagic();
 
-				ImGui::Checkbox("Aimbot",           &config.aimbot);
+				CheckboxEx("Aimbot",           &config.aimbot);
 
-				ImGui::Checkbox("Aim Closest",      &config.AimClose);
+				CheckboxEx("Aim Closest",      &config.AimClose);
 
-				ImGui::Checkbox("Aim at Team",      &config.TeamAim);
+				CheckboxEx("Aim at Team",      &config.TeamAim);
 
-				ImGui::Checkbox("Target on shoot",  &config.AimOnClick);
+				CheckboxEx("Target on shoot",  &config.AimOnClick);
 
-				ImGui::Checkbox("Triggerbot",       &config.triggerbot);		
-
-				ImGui::EndTabItem();
+				ImGui::EndTabItem(); 
 			}
-
 
 			if (ImGui::BeginTabItem("Exploits"))
 			{
 				//Checkbox's
 
-				if (ImGui::Checkbox("Godmode",            &config.godmode))   ToggleGodmode();
+				if (CheckboxEx("Godmode",            &config.godmode))   ToggleGodmode();
 
-				if (ImGui::Checkbox("Infinite Ammo",      &config.ammo))	  ToggleAmmo();
+				if (CheckboxEx("Infinite Ammo",      &config.ammo))	  ToggleAmmo();
 
-				if (ImGui::Checkbox("Infinite Reserves",  &config.reserves))  ToggleReserves();
+				if (CheckboxEx("Infinite Reserves",  &config.reserves))  ToggleReserves();
 
-				if (ImGui::Checkbox("Armor Piercing",     &config.NoArmor))   ToggleArmor();
+				if (CheckboxEx("Armor Piercing",     &config.NoArmor))   ToggleArmor();
 
-				if (ImGui::Checkbox("Switch",             &config.WpnSwitch)) ToggleSwitch();
+				if (CheckboxEx("Switch",             &config.WpnSwitch)) ToggleSwitch();
 
 
 				//Sliders
@@ -102,12 +115,11 @@ void DrawMenu(SDL_Window* window)
 
 				ImGui::EndTabItem();
 			}
-
-
+			
 			if (ImGui::BeginTabItem("Misc"))
 			{
 
-				if (ImGui::Checkbox("Remove weapon models", &config.InvisGun)) ToggleModels();
+				if (CheckboxEx("Remove weapon models", &config.InvisGun)) ToggleModels();
 
 				ImGui::SliderFloat("FOV", config.fov, 1, 170);
 
@@ -116,6 +128,7 @@ void DrawMenu(SDL_Window* window)
 				ImGui::EndTabItem();
 			}
 
+			ImGui::EndTabBar();
 		}
 		
 		CleanMenu();
@@ -127,7 +140,6 @@ void DrawMenu(SDL_Window* window)
 }
 
 
-//initializing ImGui and setting up the menus theme. the colors probably dont need to be so incredibly precise but im picky lol
 void InitializeGui(const DWORD GameBase)
 {
 	IMGUI_CHECKVERSION();
@@ -138,22 +150,44 @@ void InitializeGui(const DWORD GameBase)
 
 	ImGuiStyle& style = ImGui::GetStyle();
 
-	style.TabRounding = 0;
-	style.Colors[ImGuiCol_ResizeGrip]           = { 0, 0, 0, 0 };
-	style.Colors[ImGuiCol_ResizeGripActive]     = { 0, 0, 0, 0 };
-	style.Colors[ImGuiCol_ResizeGripHovered]    = { 0, 0, 0, 0 };
-	style.Colors[ImGuiCol_FrameBg]              = { 0.19f, 0.19f, 0.19f, 1 };
-	style.Colors[ImGuiStyleVar_FramePadding]    = { 2, 2, 2, 2 };
-	style.Colors[ImGuiStyleVar_FrameBorderSize] = { 1, 1, 1, 1 };
-	style.Colors[ImGuiStyleVar_FrameRounding]   = { 0, 0, 0, 0 };
-	style.Colors[ImGuiCol_Border]               = { 0.6f, 0.13f, 0.60f, 1 };
-	style.Colors[ImGuiCol_WindowBg]             = { 0.11764f, 0.05490f, 0.21568f, 1 };
-	style.Colors[ImGuiCol_Tab]                  = { 0.33333f, 0.18039f, 0.58039f, 1 };
-	style.Colors[ImGuiCol_TabActive]            = { 0.48333f, 0.33039f, 0.73039f, 1 };
-	style.Colors[ImGuiCol_TabHovered]           = { 0.58333f, 0.43039f, 0.83039f, 1 };
-	style.Colors[ImGuiCol_CheckMark]            = { 0.08627f, 0.91372f, 0.30588f, 1 };
-	style.Colors[ImGuiCol_SliderGrab]           = { 0.39215f, 0.39215f, 0.39215f, 1 };
-	style.Colors[ImGuiCol_SliderGrabActive]     = { 0.51372f, 0.51372f, 0.51372f, 1 };
-	style.Colors[ImGuiCol_FrameBgHovered]       = { 0.23f, 0.23f, 0.23f, 1 };
-	style.Colors[ImGuiCol_FrameBgActive]        = { 0.23f, 0.23f, 0.23f, 1 };
+	constexpr ImVec4 clear          = { 0.0f, 0.0f, 0.0f, 0.0f };
+	constexpr ImVec4 black          = { 0.0f, 0.0f, 0.0f, 1.0f };
+	constexpr ImVec4 grey           = { 0.0901960f, 0.0901960f, 0.0901960f, 1.0f };
+	constexpr ImVec4 DarkGrey       = { 0.0601960f, 0.0601960f, 0.0601960f, 1.0f };
+	constexpr ImVec4 LightGrey      = { 0.1562745f, 0.1562745f, 0.1562745f, 1.0f };
+	constexpr ImVec4 DarkGrey_Child = { 0.0501960f, 0.0501960f, 0.0501960f, 1.0f };
+	constexpr ImVec4 DarkPurple     = { 0.2156862f, 0.0117647f, 0.3686274f, 0.75f };
+	constexpr ImVec4 LightPurple    = { 0.3156862f, 0.0217647f, 0.4686274f, 0.75f };
+	constexpr ImVec4 LightPurple_2  = { 0.4156862f, 0.0317647f, 0.5686274f, 0.75f };
+
+	style.TabRounding     = 0;
+	style.FrameBorderSize = 1;
+	style.FramePadding    = { 7.0f, 7.0f };
+	style.Colors[ImGuiCol_ResizeGrip]        = clear;
+	style.Colors[ImGuiCol_ResizeGripActive]  = clear;
+	style.Colors[ImGuiCol_ResizeGripHovered] = clear;
+	style.Colors[ImGuiCol_TitleBgActive]     = black;
+	style.Colors[ImGuiCol_TitleBg]           = black;
+	style.Colors[ImGuiCol_WindowBg]          = grey;
+	style.Colors[ImGuiCol_Button]            = DarkGrey;
+	style.Colors[ImGuiCol_ButtonActive]      = LightGrey;
+	style.Colors[ImGuiCol_ButtonHovered]     = LightGrey;
+	style.Colors[ImGuiCol_PopupBg]           = DarkGrey;
+	style.Colors[ImGuiCol_Header]            = DarkGrey;
+	style.Colors[ImGuiCol_HeaderActive]      = LightGrey;
+	style.Colors[ImGuiCol_HeaderHovered]     = LightGrey;
+	style.Colors[ImGuiCol_FrameBg]           = DarkGrey;
+	style.Colors[ImGuiCol_FrameBgHovered]    = LightGrey;
+	style.Colors[ImGuiCol_FrameBgActive]     = LightGrey;
+	style.Colors[ImGuiCol_ChildBg]           = DarkGrey_Child;
+	style.Colors[ImGuiCol_CheckMark]         = black;
+	style.Colors[ImGuiCol_Tab]               = DarkGrey;
+	style.Colors[ImGuiCol_TabActive]         = LightPurple;
+	style.Colors[ImGuiCol_TabHovered]        = LightPurple_2;
+	style.Colors[ImGuiCol_SliderGrab]        = DarkPurple;
+	style.Colors[ImGuiCol_SliderGrabActive]  = LightPurple;
+	style.Colors[ImGuiCol_Separator]         = DarkGrey;
+
+	ImGuiIO& io = ImGui::GetIO();
+	io.ConfigWindowsResizeFromEdges = false;
 }

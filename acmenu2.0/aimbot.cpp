@@ -8,7 +8,7 @@ entity*** EntityListPtr;
 
 void aimbot()
 {
-	entity** EntityList = *EntityListPtr;
+	entity** const EntityList = *EntityListPtr;
 
 	float furthest   = MAX_FLOAT;
 	float FinalYaw   = NULL;

@@ -14,7 +14,6 @@ struct _config
     bool AimClose    = false;
     bool TeamAim     = false;
     bool AimOnClick  = false;
-    bool triggerbot  = false;
 
     //exploits
     bool ammo      = false;
