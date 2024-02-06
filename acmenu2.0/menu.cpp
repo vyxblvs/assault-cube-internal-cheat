@@ -60,6 +60,21 @@ bool CheckboxEx(const char* const label, bool* const var)
 }
 
 
+void ToolTip(const char* const text)
+{
+	ImGui::SameLine();
+
+	constexpr ImVec4 LightPurple = { 0.8156862f, 0.5217647f, 0.9686274f, 0.75f };
+
+	ImGui::TextColored(LightPurple, "?");
+
+	if (ImGui::IsItemHovered())
+	{
+		ImGui::SetTooltip(text);
+	}
+}
+
+
 void DrawMenu(SDL_Window* window)
 {
 	if (config.menu)
@@ -90,7 +105,7 @@ void DrawMenu(SDL_Window* window)
 
 				if (CheckboxEx("Godmode",            &config.godmode))   ToggleGodmode();
 
-				if (CheckboxEx("Infinite Ammo",      &config.ammo))	  ToggleAmmo();
+				if (CheckboxEx("Infinite Ammo",      &config.ammo))	     ToggleAmmo();
 
 				if (CheckboxEx("Infinite Reserves",  &config.reserves))  ToggleReserves();
 
@@ -98,20 +113,22 @@ void DrawMenu(SDL_Window* window)
 
 				if (CheckboxEx("Switch",             &config.WpnSwitch)) ToggleSwitch();
 
+				ToolTip("Forces all semi-auto weapons to fire automatically");
+
 
 				//Sliders
 
-				if (ImGui::SliderFloat("Recoil",       &config.recoil,   0, 100)) ToggleRecoil();
+				if (ImGui::SliderFloat("Visual Recoil",   &config.VisRecoil,  0, 100)) ToggleVisRecoil();
 
-				if (ImGui::SliderFloat("Spread",       &config.spread,   0, 100)) ToggleSpread();
+				if (ImGui::SliderFloat("Physical Recoil", &config.PhysRecoil, 0, 100)) TogglePhysRecoil();
 
-				if (ImGui::SliderFloat("Pushback",     &config.push,	 0, 100)) TogglePush();
+				if (ImGui::SliderFloat("Spread",          &config.spread,     0, 100)) ToggleSpread();
 
-				if (ImGui::SliderFloat("Firerate",     &config.firerate, 1, 100)) ToggleFirerate();
+				if (ImGui::SliderFloat("Firerate",        &config.firerate,   1, 100)) ToggleFirerate();
 
-				if (ImGui::SliderFloat("Reload Speed", &config.reload,   1, 100)) ToggleReload();
+				if (ImGui::SliderFloat("Reload Speed",    &config.reload,     1, 100)) ToggleReload();
 
-				if (ImGui::SliderFloat("Crouch Speed", &config.crouch,   1, 100)) ToggleCrouch();
+				if (ImGui::SliderFloat("Crouch Speed",    &config.crouch,     1, 100)) ToggleCrouch();
 
 				ImGui::EndTabItem();
 			}
@@ -190,4 +207,7 @@ void InitializeGui(const DWORD GameBase)
 
 	ImGuiIO& io = ImGui::GetIO();
 	io.ConfigWindowsResizeFromEdges = false;
+
+	io.Fonts->AddFontFromFileTTF("c:\\users\\john\\source\\repos\\gui\\gui\\arial.ttf", 16);
+	io.FontDefault = io.Fonts->Fonts[0];
 }

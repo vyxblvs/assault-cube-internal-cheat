@@ -31,11 +31,11 @@ void ToggleReserves();
 
 void ToggleSwitch();
 
-void ToggleRecoil();
+void ToggleVisRecoil();
 
 void ToggleSpread();
 
-void TogglePush();
+void TogglePhysRecoil();
 
 void ToggleGodmode();
 

@@ -78,9 +78,9 @@ void ToggleSwitch()
 }
 
 
-void ToggleRecoil()
+void ToggleVisRecoil()
 {
-	if (config.recoil < 100) hook(hooks.recoil, RecoilScale, _jmp, 4);
+	if (config.VisRecoil < 100) hook(hooks.recoil, RecoilScale, _jmp, 4);
 	else
 	{
 		constexpr BYTE buffer[] = { 0xF3, 0x0F, 0x5D, 0xD0, 0xF3, 0x0F, 0x11, 0x50, 0x40 };
@@ -100,9 +100,9 @@ void ToggleSpread()
 }
 
 
-void TogglePush()
+void TogglePhysRecoil()
 {
-	if (config.push < 100) hook(hooks.PushPtr, PushScale, _call, 0);
+	if (config.PhysRecoil < 100) hook(hooks.PushPtr, PushScale, _call, 0);
 	else
 	{
 		constexpr BYTE buffer[] = { 0x8B, 0x52, 0x08, 0xFF, 0xD2 };

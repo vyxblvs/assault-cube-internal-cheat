@@ -21,9 +21,9 @@ struct _config
     bool NoArmor   = false;
     bool reserves  = false;
     bool WpnSwitch = false;
-    float recoil   = 100.0f;
+    float VisRecoil   = 100.0f;
     float spread   = 100.0f;
-    float push     = 100.0f;
+    float PhysRecoil     = 100.0f;
     float firerate = 1.0f;
     float reload   = 1.0f;
     float crouch   = 6.0f;
