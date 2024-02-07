@@ -111,7 +111,7 @@ void DrawMenu(SDL_Window* window)
 
 				if (CheckboxEx("Armor Piercing",     &config.NoArmor))   ToggleArmor();
 
-				if (CheckboxEx("Switch",             &config.WpnSwitch)) ToggleSwitch();
+				if (CheckboxEx("Force Auto-Fire",    &config.AutoFire))  ToggleAutoFire();
 
 				ToolTip("Forces all semi-auto weapons to fire automatically");
 

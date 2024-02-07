@@ -29,7 +29,7 @@ void ToggleAmmo();
 
 void ToggleReserves();
 
-void ToggleSwitch();
+void ToggleAutoFire();
 
 void ToggleVisRecoil();
 

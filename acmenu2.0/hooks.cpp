@@ -67,9 +67,9 @@ void ToggleReserves()
 }
 
 
-void ToggleSwitch()
+void ToggleAutoFire()
 {
-	if (config.WpnSwitch) memset(hooks.WpnSwitch, nop, 4);
+	if (config.AutoFire) memset(hooks.WpnSwitch, nop, 4);
 	else
 	{
 		constexpr BYTE buffer[] = { 0x80, 0x78, 0x66, 0x00 };

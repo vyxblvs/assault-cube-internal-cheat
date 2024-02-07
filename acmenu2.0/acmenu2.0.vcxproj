@@ -257,7 +257,7 @@
     <ClCompile Include="initialization.cpp" />
     <ClCompile Include="hooks.cpp" />
     <ClCompile Include="input.cpp" />
-    <ClCompile Include="DllMain.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="libraries\include\Imgui\imgui.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>

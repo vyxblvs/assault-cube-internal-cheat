@@ -16,17 +16,17 @@ struct _config
     bool AimOnClick  = false;
 
     //exploits
-    bool ammo      = false;
-    bool godmode   = false;
-    bool NoArmor   = false;
-    bool reserves  = false;
-    bool WpnSwitch = false;
-    float VisRecoil   = 100.0f;
-    float spread   = 100.0f;
-    float PhysRecoil     = 100.0f;
-    float firerate = 1.0f;
-    float reload   = 1.0f;
-    float crouch   = 6.0f;
+    bool ammo        = false;
+    bool godmode     = false;
+    bool NoArmor     = false;
+    bool reserves    = false;
+    bool AutoFire    = false;
+    float VisRecoil  = 100.0f;
+    float spread     = 100.0f;
+    float PhysRecoil = 100.0f;
+    float firerate   = 1.0f;
+    float reload     = 1.0f;
+    float crouch     = 6.0f;
 
 	//misc
     bool InvisGun = false;
