@@ -18,7 +18,7 @@ void ToggleFirerate()
 		if (config.firerate == 1)
 		{
 			constexpr BYTE buffer[] = { 0x89, 0x08 };
-			memcpy(hooks.firerate, buffer, sizeof(buffer));
+			memcpy(hooks.firerate, buffer, sizeof(buffer)); 
 		}
 
 		else memset(hooks.firerate, nop, 2);
@@ -117,7 +117,7 @@ void ToggleArmor()
 	else
 	{
 		constexpr BYTE buffer[] = { 0xF3, 0x0F, 0x2C, 0xC9, 0x2B, 0xF1 };
-		memcpy(hooks.damage, buffer, sizeof(buffer));
+		memcpy(hooks.armor, buffer, sizeof(buffer));
 	}
 }
 

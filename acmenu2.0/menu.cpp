@@ -207,7 +207,4 @@ void InitializeGui(const DWORD GameBase)
 
 	ImGuiIO& io = ImGui::GetIO();
 	io.ConfigWindowsResizeFromEdges = false;
-
-	io.Fonts->AddFontFromFileTTF("c:\\users\\john\\source\\repos\\gui\\gui\\arial.ttf", 16);
-	io.FontDefault = io.Fonts->Fonts[0];
 }
